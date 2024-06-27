@@ -9,29 +9,29 @@
     <h2>Login</h2>
     <form action="#">
         <label for="nombre">Nombre</label>
-        <input type="text" id="nombre">
+        <input type="text" id="nombre" required placeholder="Nombre">
         <br>
         <label for="apellido">Apellido</label>
-        <input type="text" id="apellido">
+        <input type="text" id="apellido" required placeholder="Apellido">
         <br>
         <label for="email">Correo Electronico</label>
-        <input type="email" id="email">
+        <input type="email" id="email" required placeholder="Correo Electronico">
         <br>
         <label for="dateBirth">Fecha de Nacimiento</label>
-        <input type="date" id="dateBirth">
+        <input type="date" id="dateBirth" required>
         <br>
         <label for="favSport">Deporte Favorito</label>
-        <select name="" id="favSport">
-            <option value="" selected>Deportes</option>
-            <option value="">Futbol</option>
-            <option value="">Basquet</option>
-            <option value="">Voley</option>
-            <option value="">Tenis</option>
+        <select name="Deportes" id="favSport" size="1">
+            <option value="" disabled selected>Deportes</option>
+            <option value="1">Futbol</option>
+            <option value="2">Basquet</option>
+            <option value="3">Voley</option>
+            <option value="4">Tenis</option>
         </select>
         <br>
         <label for="description">Descripcion</label>
         <br>
-        <textarea id="description"></textarea>
+        <textarea id="description" required></textarea>
         <br>
         <input type="submit">
         <input type="reset" value="Borrar">
