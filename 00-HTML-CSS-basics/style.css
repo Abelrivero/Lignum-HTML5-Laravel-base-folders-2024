@@ -1,0 +1,80 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #3c3c3c;
+}
+.conteiner{
+    margin: 2%;
+    height: 100vh;
+}
+.header{
+    height: 100px;
+    margin-left: 2%;
+    margin-right: 2%;
+    padding: 20px;
+    background-color: #515151;
+    border-radius: 15px;
+}
+.divSection{
+    display: flex;
+}
+.nav{
+    margin: 2%;
+    background-color: #515151;
+    height: 500px;
+    width: 23%;
+    border-radius: 15px;
+}
+.section{
+    margin: 2%;
+    padding-top: 5%;
+    background-color: #515151;
+    height: 500px;
+    width: 46%;
+    border-radius: 15px;
+}
+.aside{
+    margin: 2%;
+    background-color: #515151;
+    height: 500px;
+    width: 23%;
+    border-radius: 15px;
+}
+.sectionHeader{
+    background-color: #666666;
+    width: 90%;
+    height: 90px;
+    margin-right: 5%;
+    margin-left: 5%;
+    border-radius: 15px;
+}
+.sectionArticle{
+    background-color: #666666;
+    width: 90%;
+    height: 200px;
+    margin-top: 2%;
+    margin-right: 5%;
+    margin-left: 5%;
+    border-radius: 15px;
+}
+.sectionfotter{
+    background-color: #666666;
+    width: 90%;
+    height: 90px;
+    margin-top: 2%;
+    margin-right: 5%;
+    margin-left: 5%;
+    padding-bottom: 2%;
+    border-radius: 15px;
+}
+.footer{
+    height: 100px;
+    margin-left: 2%;
+    margin-right: 2%;
+    padding: 20px;
+    background-color: #515151;
+    border-radius: 15px;
+}
