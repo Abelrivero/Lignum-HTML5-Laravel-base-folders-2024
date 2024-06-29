@@ -2,6 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: #ffffffff;
+    font-size: 14px;
 }
 body{
     background-color: #3c3c3c;
@@ -15,38 +17,58 @@ body{
     margin-left: 2%;
     margin-right: 2%;
     padding: 20px;
-    background-color: #515151;
+    background-color: #ff00ff;
     border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.header > h1{
+    font-size: 46px;
 }
 .divSection{
     display: flex;
 }
-.nav{
+.navigation{
     margin: 2%;
-    background-color: #515151;
+    background-color: #3b83bd;
     height: 500px;
     width: 23%;
     border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.section{
+.navigation > h1{
+    font-size: 12px;
+}
+.content{
     margin: 2%;
-    padding-top: 5%;
+    padding-top: 1%;
     background-color: #515151;
     height: 500px;
     width: 46%;
     border-radius: 15px;
+    text-align: center;
 }
-.aside{
+.sidebar{
     margin: 2%;
-    background-color: #515151;
+    background-color: #ff00ff;
     height: 500px;
     width: 23%;
     border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sidebar > h1{
+    font-size: 10px;
 }
 .sectionHeader{
     background-color: #666666;
     width: 90%;
     height: 90px;
+    margin-top: 3%;
     margin-right: 5%;
     margin-left: 5%;
     border-radius: 15px;
@@ -67,7 +89,7 @@ body{
     margin-top: 2%;
     margin-right: 5%;
     margin-left: 5%;
-    padding-bottom: 2%;
+    margin-bottom: 2%;
     border-radius: 15px;
 }
 .footer{
@@ -75,6 +97,12 @@ body{
     margin-left: 2%;
     margin-right: 2%;
     padding: 20px;
-    background-color: #515151;
+    background-color: #ff00ff;
     border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.footer > h1{
+    font-size: 10px;
 }
