@@ -106,3 +106,51 @@ body{
 .footer > h1{
     font-size: 10px;
 }
+@media(max-width: 768px){
+    .sectionHeader{
+        margin-top: 20%;
+    }
+}
+@media(max-width: 425px){
+    .sectionHeader{
+        margin-top: 40%;
+    }
+}
+@media(min-width: 1441px){
+    .sectionHeader{
+        margin-top: 2%;
+    }
+    .sidebar > h1{
+        font-size: 50px;
+    }
+    .navigation > h1{
+        font-size: 58px;
+    }
+    .header > h1{
+        font-size: 92px;
+    }
+    .sectionHeader > h1{
+        font-size: 58px;
+    }
+    .sectionArticle > h1{
+        font-size: 58px;
+    }
+    .sectionfotter > h1{
+        font-size: 58px;
+    }
+    .content > h1{
+        font-size: 58px;
+    }
+    .content{
+        height: 600px;
+    }
+    .sidebar{
+        height: 600px;
+    }
+    .navigation{
+        height: 600px;
+    }
+    .footer > h1{
+        font-size: 92px;    
+    }
+}
