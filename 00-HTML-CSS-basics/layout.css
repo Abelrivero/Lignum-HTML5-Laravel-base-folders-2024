@@ -8,7 +8,7 @@ body{
     height: 100%;
 }
 .conteiner{
-    margin: 3% 15% 3% 15%;
+    margin: 3% 15% 3% 7%;
 }
 .header{
     display: grid;
@@ -29,15 +29,13 @@ body{
 .imagen{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
+    grid-gap: 1rem;
 }
 .card{
     width: 30vw;
     height: 30vh;
     position: relative;
     display: flex;
-    overflow: auto;
-    white-space: hidden;
     border-radius: 25px;
     
 }
@@ -48,14 +46,6 @@ body{
     opacity: 1;
     z-index: 1;
 }
-/* .card > p{
-    display: flex;
-    margin: auto;
-    font-size: 0.5rem;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-} */
 .card-header{
     background-color: rgba(0,0,0,0.90);
     text-align: center;
@@ -74,4 +64,27 @@ body{
 .card-header:hover{
     opacity: 1;
     margin-left: 0px;
+}
+@media(max-width: 425px){
+    .titulos > h1{
+        font-size: 1em;
+    }
+    .titulos > p{
+        font-size: 0.5em;
+    }
+    .descripcion > h3{
+        font-size: 0.75em;
+    }
+    .descripcion > p{
+        font-size: 0.5em;
+    }
+    .card-header > p{
+        font-size: 0.5em;
+    }
+}
+@media(min-width: 426px) and (max-width: 1024px)
+{
+    .card-header > p{
+        font-size: 0.7em;
+    }
 }
