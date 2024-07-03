@@ -1,0 +1,3 @@
+function mostrarAlert(){
+    alert("Click");
+}

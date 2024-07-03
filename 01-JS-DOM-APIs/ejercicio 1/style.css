@@ -39,6 +39,7 @@ html{
 }
 .card-header{
     background-color: rgba(0,0,0,0.70);
+    font-size: 0.5rem;
     text-align: center;
     padding-top: 20px;
     color: #ffffff;
