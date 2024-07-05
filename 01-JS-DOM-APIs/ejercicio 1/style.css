@@ -37,6 +37,9 @@ html{
     height: 100%;
     object-fit: scale-down;
 }
+.danger{
+    color: red;
+}
 .card-header{
     background-color: rgba(0,0,0,0.70);
     font-size: 0.5rem;
@@ -56,6 +59,9 @@ html{
 .card-header:hover{
     opacity: 1;
     margin-left: 0px;
+}
+.contentListRepo{
+    float: right;
 }
 @keyframes fadeIn{
     0% { 
