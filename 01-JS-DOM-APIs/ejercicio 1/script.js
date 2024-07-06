@@ -35,13 +35,19 @@ function getChuck(){
 }
 
 function getRepo(){
-    const ulRepo = document.getElementById("listRepos")
+    const ulRepo = document.getElementById("listRepos");
+    const input = document.getElementById("serchRepo");
+    var urlRepo = "https://api.github.com/search/repositories?q=JavaScript";
+    if(input.value){
+        urlRepo = "https://api.github.com/search/repositories?q="+input.value;
+    } 
     ajaxReq({
         method: "GET",
-        url: "https://api.github.com/search/repositories?q=JavaScript"
+        url: urlRepo
     }).then(
         response => {
-            const res = JSON.parse(response)
+            const res = JSON.parse(response);
+            ulRepo.innerHTML = "";
             res.items.map(function(item){
                 const li = document.createElement('li');
                 li.textContent = item.full_name;
