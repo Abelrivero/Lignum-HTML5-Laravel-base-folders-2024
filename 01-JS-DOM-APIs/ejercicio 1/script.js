@@ -1,3 +1,15 @@
+document.addEventListener("DOMContentLoaded", (event) => {
+    const firstSection = document.getElementById("firstSection");
+    const secondSection = document.getElementById("secondSection");
+    const thirdSection = document.getElementById("thirdSection");
+    firstSection.classList.remove("hidden");
+    secondSection.classList.remove("hidden");
+    thirdSection.classList.remove("hidden");
+    firstSection.classList.add("fadeIn");
+    secondSection.classList.add("fadeIn");
+    thirdSection.classList.add("fadeIn");
+})
+
 function showAlert(){
     alert("Click");
 }
@@ -13,7 +25,7 @@ function ajaxReq(config){
                 reject(new Error(req.statusText));
             }
         }
-        req.send()
+        req.send();
     })
 }
 
@@ -62,3 +74,44 @@ function getRepo(){
     )
 }
 
+const peliculas = [
+    ["nombre", "duracion", "fecha", "categoria"],
+    ["mufassa", 108, "16/05/20204", "fantasia"],
+    ["joker 2", 108, "16/05/20204", "accion"],
+    ["deadpool", 108, "16/05/20204", "fantasia"],
+    ["dune", 108, "16/05/20204", "fantasia"],
+    ["furiosa", 108, "16/05/20204", "fantasia"]
+]
+
+function showTable(){
+    const thirdSection = document.getElementById("thirdSection");
+
+    const existTable = document.querySelector("table");
+    if (existTable) {
+        thirdSection.removeChild(existTable);
+    }
+
+    const table = document.createElement("table");
+    const thead = document.createElement("thead");
+    const tbody = document.createElement("tbody");
+    const tr = document.createElement("tr");
+    thirdSection.appendChild(table);
+    table.setAttribute("border", "1")
+    table.appendChild(thead);
+    thead.appendChild(tr);
+    peliculas[0].map(function(item){
+        const th = document.createElement("th");
+        th.textContent = item;
+        tr.appendChild(th);
+    }) 
+    for (let i = 1; i < peliculas.length; i++) {
+        const tr = document.createElement("tr");
+        peliculas[i].map(function (item) {  
+            const td = document.createElement("td");
+            td.textContent = item;
+            tr.appendChild(td);
+        })
+        tbody.appendChild(tr);
+    }
+    table.appendChild(tbody);
+}

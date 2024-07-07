@@ -12,12 +12,14 @@ html{
     display: none;
     color: #ffffff;
 }
-.principal{
-    text-align: center;
-    margin: 3%;
+.fadeIn{
     animation: fadeIn 2s ease;
 }
-.principal > h1 {
+#firstSection{
+    text-align: center;
+    margin: 3%;
+}
+#firstSection > h1 {
     color: #ffffff;
 }
 .galery{
@@ -62,6 +64,7 @@ html{
 }
 .contentListRepo{
     float: right;
+    margin-right: 3%;
 }
 @keyframes fadeIn{
     0% { 

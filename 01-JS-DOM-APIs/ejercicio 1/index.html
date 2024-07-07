@@ -10,7 +10,7 @@
     <section class="hidden">
         <h1>Hello World</h1>
     </section>
-    <section class="principal">
+    <section id="firstSection" class="hidden">
         <h1>Estrenos mas Esperado 2024</h1>
         <div class="galery">
             <div class="card">
@@ -51,17 +51,20 @@
             </div>
         </div>    
     </section>
-    <section>
+    <section class="hidden" id="secondSection">
         <h1>Lo Mejor de Chuck</h1>
         <p id="quotesChuck"></p>
         <button onclick="getChuck()">Alerta</button>  
-        <button onclick="getRepo()">Buscar</button>
         <div class="contentListRepo">
             <label for="serchRepo">Busqueda de Repositorios:</label>
             <input type="text" id="serchRepo" placeholder="Ej: javaScript">
+            <button onclick="getRepo()">Buscar</button>
             <ol id="listRepos">
             </ol>  
         </div>
+    </section>
+    <section id="thirdSection" class="hidden">
+        <button onclick="showTable()">Tabla</button>
     </section>
     <script src="script.js"></script>
 </body>
