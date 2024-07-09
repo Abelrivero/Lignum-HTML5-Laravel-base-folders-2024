@@ -33,7 +33,7 @@
             </div>
             <div class="card">
                 <span class="card-header"> 
-                    Deadpool 3
+                    DeadPool 3
                 </span>
                 <img src="imagenes/deadpool3.jpeg" alt="deadpool3">
             </div>
@@ -51,20 +51,22 @@
             </div>
         </div>    
     </section>
-    <section class="hidden" id="secondSection">
-        <h1>Lo Mejor de Chuck</h1>
-        <p id="quotesChuck"></p>
-        <button onclick="getChuck()">Alerta</button>  
+    <section id="secondSection" class="hidden">
+        <div class="jokeChuck">
+            <h1>Lo Mejor de Chuck</h1>
+            <p id="quotesChuck"></p>
+            <button onclick="getChuck()">Generar Chiste</button>  
+        </div>
         <div class="contentListRepo">
             <label for="serchRepo">Busqueda de Repositorios:</label>
-            <input type="text" id="serchRepo" placeholder="Ej: javaScript">
+            <input type="text" id="serchRepo" placeholder="Ej: JavaScript">
             <button onclick="getRepo()">Buscar</button>
             <ol id="listRepos">
             </ol>  
         </div>
     </section>
     <section id="thirdSection" class="hidden">
-        <button onclick="showTable()">Tabla</button>
+        <button onclick="showTable()">Mostrar Tabla</button>
     </section>
     <script src="script.js"></script>
 </body>

@@ -2,12 +2,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
     const firstSection = document.getElementById("firstSection");
     const secondSection = document.getElementById("secondSection");
     const thirdSection = document.getElementById("thirdSection");
-    firstSection.classList.remove("hidden");
-    secondSection.classList.remove("hidden");
-    thirdSection.classList.remove("hidden");
-    firstSection.classList.add("fadeIn");
-    secondSection.classList.add("fadeIn");
-    thirdSection.classList.add("fadeIn");
+    firstSection.classList.replace("hidden" ,"fadeIn");
+    secondSection.classList.replace("hidden" ,"fadeIn");
+    thirdSection.classList.replace("hidden" ,"fadeIn");
 })
 
 function showAlert(){
@@ -38,11 +35,13 @@ function getChuck(){
         response => {
             const res = JSON.parse(response);
             quotesChuck.innerHTML = res.value;
+            quotesChuck.classList.add("border");
         }
     ).catch(
         error => {
-            quotesChuck.className = 'danger';
-            quotesChuck.innerHTML = "A Ocurrido un Error";
+            quotesChuck.className = "danger";
+            quotesChuck.innerHTML = "Ha Ocurrido un Error";
+            quotesChuck.classList.add("border");
     })
 }
 
@@ -101,17 +100,22 @@ function showTable(){
     thead.appendChild(tr);
     peliculas[0].map(function(item){
         const th = document.createElement("th");
-        th.textContent = item;
+        th.textContent = item.toUpperCase();
         tr.appendChild(th);
     }) 
     for (let i = 1; i < peliculas.length; i++) {
         const tr = document.createElement("tr");
         peliculas[i].map(function (item) {  
             const td = document.createElement("td");
+            if(typeof item === "string"){
+               item = item.toUpperCase();
+            }
             td.textContent = item;
             tr.appendChild(td);
         })
         tbody.appendChild(tr);
     }
     table.appendChild(tbody);
+    table.tabIndex = -1;
+    table.focus();
 }
