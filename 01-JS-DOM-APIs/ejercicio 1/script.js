@@ -11,6 +11,11 @@ function showAlert(){
     alert("Click");
 }
 
+let config = {
+    method: "",
+    url: ""  
+}
+
 function ajaxReq(config){
     return new Promise ((resolve, reject) => {
         const req = new XMLHttpRequest;
@@ -28,10 +33,9 @@ function ajaxReq(config){
 
 function getChuck(){
     const quotesChuck = document.getElementById("quotesChuck");
-    ajaxReq({
-        method: "GET",
-        url: "https://api.chucknorris.io/jokes/random"
-    }).then(
+    config.method = "GET";
+    config.url = "https://api.chucknorris.io/jokes/random";
+    ajaxReq(config).then(
         response => {
             const res = JSON.parse(response);
             quotesChuck.innerHTML = res.value;
@@ -48,19 +52,17 @@ function getChuck(){
 function getRepo(){
     const ulRepo = document.getElementById("listRepos");
     const input = document.getElementById("serchRepo");
-    var urlRepo = "https://api.github.com/search/repositories?q=JavaScript";
+    config.method = "GET";
+    config.url = "https://api.github.com/search/repositories?q=JavaScript";
     if(input.value){
-        urlRepo = "https://api.github.com/search/repositories?q="+input.value;
+        config.url = "https://api.github.com/search/repositories?q="+input.value;
     } 
-    ajaxReq({
-        method: "GET",
-        url: urlRepo
-    }).then(
+    ajaxReq(config).then(
         response => {
             const res = JSON.parse(response);
             ulRepo.innerHTML = "";
             res.items.map(function(item){
-                const li = document.createElement('li');
+                const li = document.createElement("li");
                 li.textContent = item.full_name;
                 ulRepo.appendChild(li);
             }) 
@@ -69,6 +71,10 @@ function getRepo(){
     ).catch(
         error => {
             console.log(error);
+            const errorP = document.createElement("p");
+            errorP.textContent = "Ha Ocurrido un Error";
+            errorP.className = "danger";
+            ulRepo.appendChild(errorP);
         }
     )
 }
@@ -119,3 +125,20 @@ function showTable(){
     table.tabIndex = -1;
     table.focus();
 }
+
+function createMatriz(columna, fila){
+    const data = [];
+    for (let i = 0; i < columna; i++) {
+        const elementColumn = [];
+        for (let j = 0; j < fila; j++) {
+            elementColumn.push(getRandomInt(100))
+        }
+        data.push(elementColumn);
+    }
+    return data;
+}
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+console.log(createMatriz(7,6));
