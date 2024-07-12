@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('peliculas', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('role');
-            $table->string('password');
-            $table->rememberToken();
+            $table->date("anio");
+            $table->string("titulo", 250);
+            $table->bigInteger("duracion");
+            $table->text("sinopsis", 250);
+            $table->string("imagen")->nullable();
+            $table->foreignId("actorPrincipalID")->references("id")->on("actors")->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('peliculas');
     }
 };
