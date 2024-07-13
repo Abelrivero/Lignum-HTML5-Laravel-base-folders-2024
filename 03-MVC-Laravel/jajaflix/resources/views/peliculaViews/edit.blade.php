@@ -6,6 +6,10 @@
 <form action="{{route('peliculaUpdate', $pelicula->id)}}" method="POST">
     @csrf
     @method('PUT')
+    @if ($pelicula->imagen != null)
+        <img src="{{asset('/resources/imagenes/'.$pelicula->imagen)}}" alt="" width="200" height="200">
+        <br>
+    @endif
     <label for="titulo">Titulo:</label>
     <input type="text" id="titulo" name="titulo" value="{{$pelicula->titulo}}">
     <br>

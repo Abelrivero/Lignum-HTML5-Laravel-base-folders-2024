@@ -19,6 +19,10 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/principal',function(){
+    return view('usersViews.principal');
+});
+
 Route::prefix('/config')->group(function(){
     Route::prefix('/actor')->group(function(){
         Route::controller(ActorController::class)->group(function(){

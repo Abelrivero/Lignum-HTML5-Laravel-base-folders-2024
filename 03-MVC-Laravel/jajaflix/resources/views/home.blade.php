@@ -3,5 +3,6 @@
 @section('title', 'home')
 
 @section('content')
-    <a href="">ingreso</a>
+    <a href="">Ingreso</a>
+    <a href="">Registro</a>
 @endsection

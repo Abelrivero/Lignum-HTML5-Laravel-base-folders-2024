@@ -32,8 +32,14 @@ class PeliculaController extends Controller
         $pelicula->anio = $request->anio;
         $pelicula->duracion = $request->duracion;
         $pelicula->sinopsis = $request->sinopsis;
-        $pelicula->imagen = $request->imagen;
         $pelicula->actorPrincipalID = $request->actorPrincipalID;
+        if($request->hasFile('imagen')){
+            $imagen = $request->file('imagen');
+            $imagenNombre = time().$imagen->getClientOriginalName();
+            $ruta = public_path('resources/imagenes/');
+            $imagen->move($ruta, $imagenNombre);
+            $pelicula->imagen = $imagenNombre;
+        }
         $pelicula->save();
         
         return redirect()->route('peliculaIndex');
@@ -41,6 +47,7 @@ class PeliculaController extends Controller
 
     public function editPelicula(Pelicula $peliculaId)
     {
+        /* dd($peliculaId->actorPrincipalID); */
         return view('peliculaViews.edit',['pelicula' => $peliculaId]);
     }
 

@@ -3,7 +3,7 @@
 @section('title', 'Crear Pelicula')
 
 @section('content')
-<form action="{{route('peliculaStore')}}" method="POST">
+<form action="{{route('peliculaStore')}}" method="POST" enctype="multipart/form-data">
     @csrf
     <label for="titulo">Titulo:</label>
     <input type="text" id="titulo" name="titulo">
