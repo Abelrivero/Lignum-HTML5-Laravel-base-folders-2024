@@ -3,6 +3,9 @@
 @section('title', 'Crear Pelicula')
 
 @section('content')
+<a href="{{route('peliculaIndex')}}">Volver</a>
+<br>
+<img src="{{asset('/resources/imagenes/imgDefaultPeliculas.jpg')}}" alt="" id="imgSelected" width="200" height="200">
 <form action="{{route('peliculaStore')}}" method="POST" enctype="multipart/form-data">
     @csrf
     <label for="titulo">Titulo:</label>
@@ -30,4 +33,8 @@
     <br>
     <button type="submit">Crear</button>
 </form>
+@endsection
+
+@section('scripts')
+    <script src="{{asset('/scripts/scriptsPelicula.js')}}"></script>
 @endsection

@@ -3,12 +3,16 @@
 @section('title', 'Editar Pelicula')
 
 @section('content')
+<a href="{{route('peliculaIndex')}}">Atras</a>
 <form action="{{route('peliculaUpdate', $pelicula->id)}}" method="POST">
     @csrf
     @method('PUT')
     @if ($pelicula->imagen != null)
-        <img src="{{asset('/resources/imagenes/'.$pelicula->imagen)}}" alt="" width="200" height="200">
-        <br>
+        <img src="{{asset('/resources/imagenes/'.$pelicula->imagen)}}" alt="" width="200" height="200" id="imgSelected">
+        <br>        
+     @else
+        <img src="{{asset('/resources/imagenes/imgDefaultPeliculas.jpg')}}" alt="" id="imgSelected" width="200" height="200">
+        <br> 
     @endif
     <label for="titulo">Titulo:</label>
     <input type="text" id="titulo" name="titulo" value="{{$pelicula->titulo}}">
@@ -32,4 +36,8 @@
     <br>
     <button type="submit">Guardar</button>
 </form>
+@endsection
+
+@section('scripts')
+    <script src="{{asset('/scripts/scriptsPelicula.js')}}"></script>
 @endsection
