@@ -7,6 +7,6 @@
     <br>
     <a href="{{route('actorIndex')}}">actores</a>
     <br>
-    <a href="">favoritas</a>
+    <a href="{{route('favoritasIndex', 1)}}">favoritas</a>
 @endsection
 

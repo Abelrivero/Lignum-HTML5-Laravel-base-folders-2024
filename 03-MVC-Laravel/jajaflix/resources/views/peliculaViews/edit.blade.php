@@ -27,7 +27,8 @@
     <textarea name="sinopsis" id="sinopsis" cols="30" rows="10">{{$pelicula->sinopsis}}</textarea>
     <br>
     <label for="imagen">Imagen:</label>
-    <input type="file" id="imagen" name="imagen">
+    <input type="file" id="imagen" name="imagen" hidden>
+    <button onclick="cargarImagen()" type="button" id="subirImagen">subir imagen</button>
     <br>
     <label for="actorPrincipalID">Actor Principal:</label>
     <select name="actorPrincipalID" id="actorPrincipalID">

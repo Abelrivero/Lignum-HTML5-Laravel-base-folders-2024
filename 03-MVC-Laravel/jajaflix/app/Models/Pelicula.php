@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pelicula extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
         'titulo',
         'duracion',
@@ -23,4 +23,8 @@ class Pelicula extends Model
         return $this->belongsTo(Actor::class, 'actorPrincipalID', 'id');
     }
 
+    public function favoritas()
+    {
+        return $this->hasMany(PeliculaFavorita::class, 'peliculaId', 'id');
+    }
 }

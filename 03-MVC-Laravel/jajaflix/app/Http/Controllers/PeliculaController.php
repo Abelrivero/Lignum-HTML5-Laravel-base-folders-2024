@@ -47,7 +47,6 @@ class PeliculaController extends Controller
 
     public function editPelicula(Pelicula $peliculaId)
     {
-        /* dd($peliculaId->actorPrincipalID); */
         return view('peliculaViews.edit',['pelicula' => $peliculaId]);
     }
 
@@ -61,6 +60,8 @@ class PeliculaController extends Controller
             'imagen' => $request->imagen,
             'actorPrincipalID' => $request->actorPrincipalID
         ]);
+
+        /* TODO: editar imagen */
         return redirect()->route('peliculaIndex');
     }
 

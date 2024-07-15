@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ActorController;
 use App\Http\Controllers\PeliculaController;
+use App\Http\Controllers\PeliculaFavoritaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +30,14 @@ Route::get('/registro',function (){
 
 Route::get('/principal',function(){
     return view('usersViews.principal');
+});
+
+Route::controller(PeliculaFavoritaController::class)->group(function (){
+    Route::get('/favoritas/{usuarioId}', 'indexFavoritas')->name('favoritasIndex');
+    
+    Route::post('/agregarfavorita/{usuarioId}/{peliculaId}', 'crearFavorita')->name('favoritasCrear');
+
+    Route::delete('/eliminarfavorita/{favId}/{usuarioId}', 'eliminarFav')->name('favoritasEliminar');
 });
 
 Route::prefix('/config')->group(function(){
