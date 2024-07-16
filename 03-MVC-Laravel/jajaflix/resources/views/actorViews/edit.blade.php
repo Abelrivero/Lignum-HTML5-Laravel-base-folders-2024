@@ -4,6 +4,13 @@
 
 @section('content')
 <a href="{{route('actorIndex')}}">Atras</a>
+@if ($errors->any())
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{$error}}</li>
+        @endforeach
+    </ul>
+@endif
 <form method="POST" action="{{route('actorUpdate', $actor->id)}}">
     @csrf
     @method('PUT')

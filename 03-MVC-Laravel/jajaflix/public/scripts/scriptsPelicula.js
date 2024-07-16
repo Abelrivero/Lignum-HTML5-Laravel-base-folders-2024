@@ -2,7 +2,14 @@
 function cargarImagen(){
     const fileImagen = document.getElementById('imagen');
     const imgSelectd = document.getElementById('imgSelected');
-    const imgDefaultPeliculas = imgSelectd.src
+    const inputImagenAnterior = document.getElementById('imagenAnterior');
+    let rutaImagenAnterior = ""
+    if(inputImagenAnterior){
+        const imagenAnterior = inputImagenAnterior.value
+        rutaImagenAnterior = '/resources/imagenes/'+imagenAnterior
+    }else{
+        rutaImagenAnterior = '/resources/imagenes/imgDefaultPeliculas.jpg'
+    }
     fileImagen.click();
     fileImagen.addEventListener('change', e => {
         if(e.target.files[0]){
@@ -12,7 +19,7 @@ function cargarImagen(){
             }
             reader.readAsDataURL(e.target.files[0]);
         }else{
-            imgSelectd.src = imgDefaultPeliculas
+            imgSelectd.src = rutaImagenAnterior
         } 
     });
 }

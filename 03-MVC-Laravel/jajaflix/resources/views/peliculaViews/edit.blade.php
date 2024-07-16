@@ -4,7 +4,14 @@
 
 @section('content')
 <a href="{{route('peliculaIndex')}}">Atras</a>
-<form action="{{route('peliculaUpdate', $pelicula->id)}}" method="POST">
+@if ($errors->any())
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{$error}}</li>
+        @endforeach
+    </ul>
+@endif
+<form action="{{route('peliculaUpdate', $pelicula->id)}}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     @if ($pelicula->imagen != null)
@@ -28,6 +35,7 @@
     <br>
     <label for="imagen">Imagen:</label>
     <input type="file" id="imagen" name="imagen" hidden>
+    <input type="text" value="{{$pelicula->imagen}}" id="imagenAnterior" hidden>
     <button onclick="cargarImagen()" type="button" id="subirImagen">subir imagen</button>
     <br>
     <label for="actorPrincipalID">Actor Principal:</label>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ActorRequest;
 use App\Models\Actor;
 use Illuminate\Http\Request;
 
@@ -23,7 +24,7 @@ class ActorController extends Controller
         return view('actorViews.create');
     }
 
-    public function storeActor(Request $request)
+    public function storeActor(ActorRequest $request)
     {
         $actor = new Actor;
         $actor->nombre = $request->nombre;
@@ -38,7 +39,7 @@ class ActorController extends Controller
         return view('actorViews.edit', ['actor' => $actorId]);
     }
 
-    public function updateActor(Request $request, Actor $actorId)
+    public function updateActor(ActorRequest $request, Actor $actorId)
     {
     
         $actorId->update([

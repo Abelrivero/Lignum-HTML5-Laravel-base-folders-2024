@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pelicula_favoritas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('peliculaId')->references('id')->on('peliculas');
+            $table->foreignId('peliculaId')->references('id')->on('peliculas')->onDelete('cascade');
             $table->integer('usuarioId');
             $table->timestamps();
         });
