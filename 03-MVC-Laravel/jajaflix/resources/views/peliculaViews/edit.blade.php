@@ -15,7 +15,7 @@
     @csrf
     @method('PUT')
     @if ($pelicula->imagen != null)
-        <img src="{{asset('/resources/imagenes/'.$pelicula->imagen)}}" alt="" width="200" height="200" id="imgSelected">
+        <img src="{{asset($pelicula->imagen)}}" alt="" width="200" height="200" id="imgSelected">
         <br>        
      @else
         <img src="{{asset('/resources/imagenes/imgDefaultPeliculas.jpg')}}" alt="" id="imgSelected" width="200" height="200">

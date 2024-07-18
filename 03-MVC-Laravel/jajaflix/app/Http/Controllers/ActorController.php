@@ -14,9 +14,9 @@ class ActorController extends Controller
         return view('actorViews.index', ['actores' => $actores]);
     }
 
-    public function showActor()
+    public function showActor(Actor $actorId)
     {
-
+        return response($actorId);
     }
 
     public function createActor()
@@ -46,7 +46,8 @@ class ActorController extends Controller
             'nombre' => $request->nombre,
             'fechaNacimiento' => $request->fechaNacimiento
         ]);
-        return redirect()->route('actorIndex');
+        /* return redirect()->route('actorIndex'); */ //redireccion cuando se hace con laravel
+        return response('Actor Editado', 200);
     }
 
     public function deleteActor(Actor $actorId)

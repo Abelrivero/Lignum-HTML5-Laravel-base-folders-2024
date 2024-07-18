@@ -22,7 +22,7 @@ class ActorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nombre' => 'required|max:150|min:5',
+            'nombre' => 'required|max:150|min:3',
             'fechaNacimiento' => 'required'
         ];
     }

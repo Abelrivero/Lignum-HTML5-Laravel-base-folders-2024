@@ -30,20 +30,21 @@ Route::get('/registro',function (){
 
 Route::get('/principal',function(){
     return view('usersViews.principal');
-});
+})->name('userPrincipal');
 
 Route::controller(PeliculaFavoritaController::class)->group(function (){
     Route::get('/favoritas/{usuarioId}', 'indexFavoritas')->name('favoritasIndex');
     
     Route::post('/agregarfavorita/{usuarioId}/{peliculaId}', 'crearFavorita')->name('favoritasCrear');
 
-    Route::delete('/eliminarfavorita/{favId}/{usuarioId}', 'eliminarFav')->name('favoritasEliminar');
+    Route::delete('/eliminarfavorita/{favId}/{usuarId}', 'eliminarFav')->name('favoritasEliminar');
 });
 
 Route::prefix('/config')->group(function(){
     Route::prefix('/actor')->group(function(){
         Route::controller(ActorController::class)->group(function(){
             Route::get('/list', 'indexActor')->name('actorIndex');
+            Route::get('/showActor/{actorId}', 'showActor');
 
             Route::get('/create', 'createActor')->name('actorCreate');
             Route::post('/alta', 'storeActor')->name('actorStore');

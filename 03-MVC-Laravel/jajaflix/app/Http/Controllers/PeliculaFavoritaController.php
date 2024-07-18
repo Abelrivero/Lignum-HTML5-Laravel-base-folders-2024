@@ -29,9 +29,10 @@ class PeliculaFavoritaController extends Controller
 
     }
 
-    public function eliminarFav(PeliculaFavorita $favId, $usuarioId)
+    public function eliminarFav(PeliculaFavorita $favId)
     {
-        $favId->delete();
-        return redirect()->route('favoritasIndex',$usuarioId)->with('success', 'Pelicula Eliminada');
+        dd($favId);
+        /* $favId->delete();
+        return redirect()->route('favoritasIndex',$usuarioId)->with('success', 'Pelicula Eliminada'); */
     }
 }

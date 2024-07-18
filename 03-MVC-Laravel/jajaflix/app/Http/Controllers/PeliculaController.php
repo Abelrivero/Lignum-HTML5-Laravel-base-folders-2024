@@ -36,11 +36,13 @@ class PeliculaController extends Controller
         $pelicula->sinopsis = $request->sinopsis;
         $pelicula->actorPrincipalID = $request->actorPrincipalID;
         if($request->hasFile('imagen')){
-            $imagen = $request->file('imagen');
+            $imagen = $request->file('imagen')->store('public/imagenes');
+            $imagen = str_replace('public', '/storage', $imagen);
+         /*    $path = $request->file('avatar')->store('avatars');
             $imagenNombre = time().$imagen->getClientOriginalName();
             $ruta = public_path('resources/imagenes/');
-            $imagen->move($ruta, $imagenNombre);
-            $pelicula->imagen = $imagenNombre;
+            $imagen->move($ruta, $imagenNombre); */
+            $pelicula->imagen = $imagen;
         }
         $pelicula->save();
         
@@ -56,22 +58,24 @@ class PeliculaController extends Controller
     {
        
         if($request->hasFile('imagen')){
-            $imagen = $request->file('imagen');
-            $imagenNombre = time().$imagen->getClientOriginalName();
+            $imagen = $request->file('imagen')->store('public/imagenes');
+            $imagen = str_replace('public', '/storage', $imagen);
+           /*  $imagenNombre = time().$imagen->getClientOriginalName();
             $ruta = public_path('resources/imagenes/');
             $imagen->move($ruta, $imagenNombre);
             $imagenAnterior = $imagenNombre;
-            $rutaEliminar = 'imagenes/'.$peliculaId->imagen;
-            Storage::disk('public2')->delete($rutaEliminar);
+            $rutaEliminar = 'imagenes/'.$peliculaId->imagen; */
+            $rutaEliminar = str_replace('/storage', 'public', $peliculaId->imagen);
+            Storage::delete($rutaEliminar);
         }else{
-            $imagenAnterior = $peliculaId->imagen;
+            $imagen = $peliculaId->imagen;
         }
         $peliculaId->update([
             'titulo' => $request->titulo,
             'anio' => $request->anio,
             'duracion' => $request->duracion,
             'sinopsis' => $request->sinopsis,
-            'imagen' => $imagenAnterior,
+            'imagen' => $imagen,
             'actorPrincipalID' => $request->actorPrincipalID
         ]);
 

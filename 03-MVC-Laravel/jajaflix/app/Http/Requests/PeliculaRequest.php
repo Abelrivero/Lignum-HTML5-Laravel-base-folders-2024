@@ -28,7 +28,7 @@ class PeliculaRequest extends FormRequest
             'duracion' => 'required|max:500',
             'sinopsis' => 'required|max:250',
             'imagen' => 'nullable|image',
-            'actorPrincipalID' => 'required'
+            'actorPrincipalID' => 'nullable'
         ];
     }
 }

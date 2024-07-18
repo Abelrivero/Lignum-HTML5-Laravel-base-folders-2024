@@ -6,7 +6,7 @@ function cargarImagen(){
     let rutaImagenAnterior = ""
     if(inputImagenAnterior){
         const imagenAnterior = inputImagenAnterior.value
-        rutaImagenAnterior = '/resources/imagenes/'+imagenAnterior
+        rutaImagenAnterior = imagenAnterior
     }else{
         rutaImagenAnterior = '/resources/imagenes/imgDefaultPeliculas.jpg'
     }
@@ -46,12 +46,13 @@ function guardarFavorito(peliculaId, usuarioId){
     });
 }
 
-/* function eliminarFavorita($favId){
+function eliminarFavorita($favId){
     let csrf = $('#tokenselect').val();
+    $('#btnEliminarFav').unbind();
     console.log($favId);
     console.log(csrf);
     $.ajax({
-        type: 'DELETE',
+        method: 'DELETE',
         url: "/eliminarfavorita/"+$favId,
         headers: {"X-CSRF-TOKEN": csrf},
         success: function (response) {
@@ -61,4 +62,30 @@ function guardarFavorito(peliculaId, usuarioId){
             console.log(res);
         }
     });
-} */
+} 
+
+const dropZone = document.querySelector('.drop-zone');
+if(dropZone){
+    let text = document.createElement('p');
+    
+    dropZone.addEventListener("dragenter", (ev) => {
+        text.textContent = 'suelta el archivo';
+        dropZone.appendChild(text);
+        
+    });
+      
+    dropZone.addEventListener("dragleave", () => {
+        dropZone.removeChild(text);
+    });
+      
+    dropZone.addEventListener("dragover", (ev) => {
+        ev.preventDefault();
+    
+    });
+    
+    dropZone.addEventListener("drop", (ev) => {
+        ev.preventDefault();
+        dropZone.removeChild(text);
+        console.log(ev.dataTransfer.files);
+      });
+}

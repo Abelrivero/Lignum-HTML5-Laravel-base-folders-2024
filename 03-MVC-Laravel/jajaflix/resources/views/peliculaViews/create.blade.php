@@ -31,6 +31,10 @@
     <input type="file" id="imagen" name="imagen" hidden>
     <button onclick="cargarImagen()" type="button" >Subir Imagen</button>
     <br>
+    <div style="border: 1px solid black;width:200px;height:200px" class="drop-zone">
+
+    </div>
+    <br>
     <label for="actorPrincipalID">Actor Principal:</label>
     <select name="actorPrincipalID" id="actorPrincipalID">
         <option disabled selected>Selecione Actor</option>
