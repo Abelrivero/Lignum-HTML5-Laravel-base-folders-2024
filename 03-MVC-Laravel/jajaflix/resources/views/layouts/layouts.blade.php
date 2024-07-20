@@ -16,10 +16,14 @@
     </title>
 
     <script src="{{'/bootstrap/js/bootstrap.bundle.js'}}"></script>
+
+    @livewireStyles
 </head>
 <body class="p-3 mb-2 bg-dark bg-gradient text-white">
     @yield('content')
 
     @yield('scripts')
+
+    @livewireScripts
 </body>
 </html>

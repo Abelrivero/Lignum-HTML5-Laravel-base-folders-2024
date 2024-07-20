@@ -3,6 +3,7 @@
 use App\Http\Controllers\ActorController;
 use App\Http\Controllers\PeliculaController;
 use App\Http\Controllers\PeliculaFavoritaController;
+use App\Livewire\PeliculaEdit;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -70,3 +71,5 @@ Route::prefix('/config')->group(function(){
         });
     });
 });
+
+Route::get('/editpelicula', PeliculaEdit::class);

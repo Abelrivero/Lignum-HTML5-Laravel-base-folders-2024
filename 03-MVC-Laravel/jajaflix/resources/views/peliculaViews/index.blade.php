@@ -9,7 +9,7 @@
     <ul>
         @forelse ($peliculas as $pelicula)
         <li>{{$pelicula->titulo}}
-            <a href="{{route('peliculaEdit', $pelicula->id)}}">Editar</a>
+            {{-- <a href="{{route('peliculaEdit', $pelicula->id)}}">Editar</a> --}}
             <form action="{{route('peliculaDelete', $pelicula->id)}}" method="POST">
                 @csrf
                 @method('DELETE')
@@ -19,6 +19,10 @@
             @csrf
             <input type="text" id="tokenselect" value="{{ csrf_token() }}" hidden>
             <button onclick="guardarFavorito({{$pelicula->id}}, 1)">Agregar a favoritos</button>
+
+            <button type="button" class="btn btn-primary" onclick="Livewire.dispatch('showPelicula', {idPelicula: {{$pelicula->id}}})">
+                Editar
+            </button>
             
         </li>
         @empty
@@ -26,6 +30,8 @@
         @endforelse
     </ul>
 @endsection
+
+<livewire:PeliculaEdit/>
 
 @section('scripts')
     <script src="{{asset('/scripts/scriptsPelicula.js')}}"></script>

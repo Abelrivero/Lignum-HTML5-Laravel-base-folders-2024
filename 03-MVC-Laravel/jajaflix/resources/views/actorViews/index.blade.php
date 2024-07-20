@@ -30,6 +30,10 @@
 @component('componentes.modal')
     @slot('modalTitle', 'Editar Actor')
 
+    @slot('botonCerrar')
+        <button type="button" class="btn-close" onclick="cerrarModal()"></button>
+    @endslot
+
     @slot('modalBody')
     <ul id="ulErrors">
 
@@ -39,7 +43,16 @@
         <span class="spanName">Nombre</span>
     </label>
 
-    <input type="date" name="fechaNacimiento" id="fechaNacimiento">
+    <label for="" class="label">
+        <input type="date" name="fechaNacimiento" id="fechaNacimiento" class="input">
+        {{-- <input type="date" placeholder=" "  id="nombre"> --}}
+        <span class="spanName">Fecha</span>
+    </label>
+    
+    @endslot
+
+    @slot('modalCerrar')
+        <button type="button" class="btn btn-secondary" onclick="cerrarModal()">Cerrar</button>
     @endslot
 
     @slot('modalBotonGuardar')

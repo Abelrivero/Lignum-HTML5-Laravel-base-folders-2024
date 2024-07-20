@@ -47,7 +47,7 @@ class ActorController extends Controller
             'fechaNacimiento' => $request->fechaNacimiento
         ]);
         /* return redirect()->route('actorIndex'); */ //redireccion cuando se hace con laravel
-        return response('Actor Editado', 200);
+        return response('Actor Editado Correctamente', 200);
     }
 
     public function deleteActor(Actor $actorId)

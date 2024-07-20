@@ -55,3 +55,9 @@ function guardarActor() {
         }
     });
 }
+function cerrarModal(){
+    let ulErrors = $('#ulErrors');
+    $('#componenteModal').modal('hide');
+    ulErrors.empty();
+    $('input').removeClass('border border-danger');
+}

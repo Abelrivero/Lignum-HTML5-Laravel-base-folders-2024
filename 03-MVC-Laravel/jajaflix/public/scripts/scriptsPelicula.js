@@ -89,3 +89,19 @@ if(dropZone){
         console.log(ev.dataTransfer.files);
       });
 }
+
+document.addEventListener('livewire:init', () => {
+    Livewire.on('openModal', (event) => {
+        $('#componenteModal').modal('show');
+        $('#componenteModal').on("change", function(e){
+            e.preventDefault();
+        })
+    });
+    Livewire.on('closeModal', (event) => {
+        $('#componenteModal').modal('hide');
+    });
+});
+
+$('#btnEditarPelicula').on('click', function() {
+    $('#btnSubmitForm').click();
+})
