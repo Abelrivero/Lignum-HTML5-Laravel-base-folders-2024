@@ -2,7 +2,9 @@
 
 namespace App\Livewire;
 
+use App\Models\Actor;
 use App\Models\Pelicula;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -12,6 +14,12 @@ class PeliculaEdit extends Component
     use WithFileUploads;
 
     public $titulo, $anio, $duracion, $sinopsis, $imagen, $actorPrincipalID, $actorPrincipalNombre, $peliculaId, $urlImagen;
+    public $actors;
+
+    public function mount()
+    {
+        $this->actors = Actor::all();
+    }
 
     #[On('showPelicula')]
     public function show($idPelicula)
@@ -31,12 +39,14 @@ class PeliculaEdit extends Component
     public function update()
     {
         $pelicula = Pelicula::find($this->peliculaId);
-        $imagen = $this->imagen;
-        dd($imagen);
-        if($imagen == null){
-            $imagen = $pelicula->imagen;
+        
+        if($this->imagen){
+            $imagen = $this->imagen->store('public/imagenes');
+            $imagen = str_replace('public', '/storage', $imagen);
+            $rutaEliminar = str_replace('/storage', 'public', $pelicula->imagen);
+            Storage::delete($rutaEliminar);
         }else{
-            $this->imagen->store('public/imagenes');
+            $imagen = $pelicula->imagen;
             /* $this->imagen str_replace('public', '/storage', $this->imagen); */
         }
         $validated = $this->validate([
@@ -50,12 +60,12 @@ class PeliculaEdit extends Component
             'anio' => $this->anio,
             'duracion' => $this->duracion,
             'sinopsis' => $this->sinopsis,
-            'imagen' => $this->imagen,
+            'imagen' => $imagen,
             'actorPrincipalID' => $this->actorPrincipalID,
-            dd($this->imagen->filename)
         ]);
-        session()->flash('success', 'Pelicula Editada Correctamente');
-        $this->closeModal();
+        $this->dispatch('successPeliculaEdit');
+        $this->redirectRoute('peliculaIndex');
+        /* $this->closeModal(); */
         $this->reset('titulo', 'anio', 'duracion', 'sinopsis', 'imagen', 'actorPrincipalID');
     }
     

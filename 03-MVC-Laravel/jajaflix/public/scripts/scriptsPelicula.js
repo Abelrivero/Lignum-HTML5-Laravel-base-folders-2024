@@ -100,6 +100,10 @@ document.addEventListener('livewire:init', () => {
     Livewire.on('closeModal', (event) => {
         $('#componenteModal').modal('hide');
     });
+    Livewire.on('successPeliculaEdit', (event) => {
+        alert('Pelicula Editada Correctamente');
+       /*  $('#listPelicula').load(' #listPelicula') */
+    });
 });
 
 $('#btnEditarPelicula').on('click', function() {

@@ -8,11 +8,11 @@
         
         @slot('modalBody')
         <form action="" wire:submit="update">
-            @if ($urlImagen)
-                <img src="{{asset($urlImagen)}}" alt="" width="200" height="200">
+            @if ($imagen)
+                <img src="{{asset($imagen->temporaryUrl())}}" alt="" width="200" height="200">
                 <br>
             @else
-                <img src="{{asset('/resources/imagenes/imgDefaultPeliculas.jpg')}}" alt="" width="200" height="200">
+                <img src="{{asset($urlImagen ?? '/resources/imagenes/imgDefaultPeliculas.jpg')}}" alt="" width="200" height="200">
                 <br>
             @endif
             <label for="titulo">Titulo:</label>
@@ -32,10 +32,14 @@
             @error('sinopsis')<span class="error text-danger">{{ $message }}</span>@enderror
             <br>
             <label for="">Imagen:</label>
-            <input type="text" wire:model="imagen" id="imagen">
             <input type="file" wire:model="imagen">
-            <label for=""></label>
-            <input type="text" wire:model="actorPrincipalID">
+            <br>
+            <select name="" id="" wire:model="actorPrincipalID">
+                <option value="" selected disabled>Actor Principal</option>
+                @foreach ($actors as $actor)
+                    <option value="{{$actor->id}}">{{$actor->nombre}}</option>
+                @endforeach
+            </select>
             <button hidden type="submit" id="btnSubmitForm"></button>
         </form>
         @endslot
