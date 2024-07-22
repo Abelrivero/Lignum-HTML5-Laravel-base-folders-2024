@@ -36,7 +36,6 @@
 
     @slot('modalBody')
     <ul id="ulErrors">
-
     </ul>
     <label for="" class="label">
         <input type="text" placeholder=" " class="input" id="nombre">

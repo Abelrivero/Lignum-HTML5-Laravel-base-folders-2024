@@ -12,6 +12,7 @@
     </ul>
 @endif
 <br>
+<label for="imgSelected">Imagen:</label>
 <img src="{{asset('/resources/imagenes/imgDefaultPeliculas.jpg')}}" alt="" id="imgSelected" width="200" height="200">
 <form action="{{route('peliculaStore')}}" method="POST" enctype="multipart/form-data">
     @csrf
@@ -27,13 +28,10 @@
     <label for="sinopsis">Sinopsis:</label>
     <textarea name="sinopsis" id="sinopsis" cols="30" rows="10"></textarea>
     <br>
-    <label for="imagen">Imagen:</label>
     <input type="file" id="imagen" name="imagen" hidden>
-    <button onclick="cargarImagen()" type="button" >Subir Imagen</button>
     <br>
-    <div style="border: 1px solid black;width:200px;height:200px" class="drop-zone">
-
-    </div>
+    @component('componentes.draganddrop')
+    @endcomponent
     <br>
     <label for="actorPrincipalID">Actor Principal:</label>
     <select name="actorPrincipalID" id="actorPrincipalID">

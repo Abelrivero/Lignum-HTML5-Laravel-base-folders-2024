@@ -1,4 +1,5 @@
 <div>
+    {{-- @if($isOpen) --}}
     @component('componentes.modal')
         @slot('modalTitle', 'Editar Pelicula')
 
@@ -8,33 +9,39 @@
         
         @slot('modalBody')
         <form action="" wire:submit="update">
+            <label for="">Imagen:</label>
             @if ($imagen)
-                <img src="{{asset($imagen->temporaryUrl())}}" alt="" width="200" height="200">
+                <img src="{{asset($imagen->temporaryUrl())}}" alt="" width="200" height="200" class="rounded">
                 <br>
             @else
-                <img src="{{asset($urlImagen ?? '/resources/imagenes/imgDefaultPeliculas.jpg')}}" alt="" width="200" height="200">
+                <img src="{{asset($urlImagen ?? '/resources/imagenes/imgDefaultPeliculas.jpg')}}" alt="" width="200" height="200" class="rounded">
                 <br>
             @endif
-            <label for="titulo">Titulo:</label>
-            <input type="text" wire:model="titulo" id="titulo">
+            <label for="titulo" class="label">
+                <input type="text" placeholder=" " class="input" id="titulo" wire:model="titulo">
+                <span class="spanName">Titulo:</span>
+            </label>
             @error('titulo')<span class="error text-danger">{{ $message }}</span>@enderror
-            <br>
-            <label for="anio">Año:</label>
-            <input type="date" wire:model="anio" id="anio">
+            <label for="anio" class="label">
+                <input type="date" placeholder=" " class="input" id="anio" wire:model="anio">
+                <span class="spanName">Año:</span>
+            </label>
             @error('anio')<span class="error text-danger">{{ $message }}</span>@enderror
-            <br>
-            <label for="duracion">Duracion:</label>
-            <input type="number" wire:model="duracion" id="duracion">
+            <label for="duracion" class="label">
+                <input type="number" placeholder=" " class="input" id="duracion" wire:model="duracion">
+                <span class="spanName">Duracion:</span>
+            </label>
             @error('duracion')<span class="error text-danger">{{ $message }}</span>@enderror
-            <br>
-            <label for="sinopsis">Sinopsis:</label>
-            <textarea name="" id="" cols="10" rows="5" wire:model="sinopsis" id="sinopsis"></textarea>
+            <span class="spanNameTextArea">Sinopsis:</span>
+            <label for="sinopsis" class="label">
+                <textarea name="" id="floatingTextarea2" cols="30" rows="10" placeholder=" " wire:model="sinopsis" class="input"></textarea>
+            </label>
             @error('sinopsis')<span class="error text-danger">{{ $message }}</span>@enderror
             <br>
-            <label for="">Imagen:</label>
             <input type="file" wire:model="imagen">
             <br>
-            <select name="" id="" wire:model="actorPrincipalID">
+            <label for="actorPrincipal">Actor Principal:</label>
+            <select name="" id="actorPrincipal" wire:model="actorPrincipalID">
                 <option value="" selected disabled>Actor Principal</option>
                 @foreach ($actors as $actor)
                     <option value="{{$actor->id}}">{{$actor->nombre}}</option>
@@ -53,4 +60,5 @@
         @endslot
         
     @endcomponent
+    {{-- @endif --}}
 </div>

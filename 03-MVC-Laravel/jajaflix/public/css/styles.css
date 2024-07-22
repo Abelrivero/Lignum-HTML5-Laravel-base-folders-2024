@@ -32,3 +32,18 @@
     transform: translateY(-50%) scale(.7);
     background-color: white;
 }
+.spanNameTextArea{
+    margin-bottom: 0;
+    margin-left: 20px;
+}
+.drop-zone{
+    border: 3px dashed black;
+    border-radius: 15px;
+    width: 200px;
+    height:200px;
+    background-color:white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}

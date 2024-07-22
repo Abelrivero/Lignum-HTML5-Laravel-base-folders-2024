@@ -64,31 +64,7 @@ function eliminarFavorita($favId){
     });
 } 
 
-const dropZone = document.querySelector('.drop-zone');
-if(dropZone){
-    let text = document.createElement('p');
-    
-    dropZone.addEventListener("dragenter", (ev) => {
-        text.textContent = 'suelta el archivo';
-        dropZone.appendChild(text);
-        
-    });
-      
-    dropZone.addEventListener("dragleave", () => {
-        dropZone.removeChild(text);
-    });
-      
-    dropZone.addEventListener("dragover", (ev) => {
-        ev.preventDefault();
-    
-    });
-    
-    dropZone.addEventListener("drop", (ev) => {
-        ev.preventDefault();
-        dropZone.removeChild(text);
-        console.log(ev.dataTransfer.files);
-      });
-}
+
 
 document.addEventListener('livewire:init', () => {
     Livewire.on('openModal', (event) => {
@@ -103,6 +79,9 @@ document.addEventListener('livewire:init', () => {
     Livewire.on('successPeliculaEdit', (event) => {
         alert('Pelicula Editada Correctamente');
        /*  $('#listPelicula').load(' #listPelicula') */
+    });
+    Livewire.on('errorPeliculaFind', (event) =>{
+        alert('Ocurrio un Error, Intente Nuevamente Mas Tarde');
     });
 });
 

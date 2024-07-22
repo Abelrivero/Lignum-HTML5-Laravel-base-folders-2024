@@ -15,25 +15,43 @@ class PeliculaEdit extends Component
 
     public $titulo, $anio, $duracion, $sinopsis, $imagen, $actorPrincipalID, $actorPrincipalNombre, $peliculaId, $urlImagen;
     public $actors;
+    public $isOpen = 0;
 
     public function mount()
     {
         $this->actors = Actor::all();
     }
 
+    /* public function openModal()
+    {
+        $this->isOpen = true;
+    } */
+
+    /* public function closeModal()
+    {
+        $this->isOpen = false;
+        $this->resetValidation();
+    } */
+
     #[On('showPelicula')]
     public function show($idPelicula)
     {
         $pelicula = Pelicula::find($idPelicula);
-        $this->peliculaId = $pelicula->id;
-        $this->titulo = $pelicula->titulo;
-        $this->anio = $pelicula->anio;
-        $this->duracion = $pelicula->duracion;
-        $this->sinopsis = $pelicula->sinopsis;
-        $this->urlImagen = $pelicula->imagen;
-        $this->actorPrincipalNombre = $pelicula->actor->nombre;
-        $this->actorPrincipalID = $pelicula->actorPrincipalID;
-        $this->dispatch('openModal');
+        if($pelicula){
+           /*  $this->openModal(); */
+            $this->dispatch('openModal');
+            $this->peliculaId = $pelicula->id;
+            $this->titulo = $pelicula->titulo;
+            $this->anio = $pelicula->anio;
+            $this->duracion = $pelicula->duracion;
+            $this->sinopsis = $pelicula->sinopsis;
+            $this->urlImagen = $pelicula->imagen;
+            $this->actorPrincipalNombre = $pelicula->actor->nombre;
+            $this->actorPrincipalID = $pelicula->actorPrincipalID;
+        }else
+        {
+            $this->dispatch('errorPeliculaFind');
+        }
     }
 
     public function update()
@@ -65,14 +83,14 @@ class PeliculaEdit extends Component
         ]);
         $this->dispatch('successPeliculaEdit');
         $this->redirectRoute('peliculaIndex');
-        /* $this->closeModal(); */
+        $this->closeModal(); 
         $this->reset('titulo', 'anio', 'duracion', 'sinopsis', 'imagen', 'actorPrincipalID');
     }
     
     public function closeModal(){
         $this->dispatch('closeModal');
         $this->resetValidation();
-    }
+    } 
 
     public function render()
     {
