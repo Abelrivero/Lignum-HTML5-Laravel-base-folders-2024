@@ -18,13 +18,13 @@
             <div class="card mb-3" style="max-width: 540px;">
                 <div class="row g-0">
                   <div class="col-md-4">
-                    <img src="{{asset($pelicula->imagen)}}" class="img-fluid rounded float-start mt-4" alt="...">
+                    <img src="{{asset($pelicula->imagen)}}" class="img-thumbnail rounded float-start mt-4" alt="...">
                   </div>
                   <div class="col-md-8 text-dark">
                     <div class="card-body">
                       <h5 class="card-title">{{$pelicula->titulo}}</h5>
                       <p class="card-text .overflow-y-auto">{{$pelicula->sinopsis}}</p>
-                      <p class="card-text"><small class="text-body-secondary">Estreno: {{$pelicula->anio}}  Duracion: {{$pelicula->duracion}} min.</small></p>
+                      <p class="card-text"><small class="text-body-secondary">Estreno: {{$pelicula->anio}} Duracion: {{$pelicula->duracion}} min.</small></p>
                       <p class="card-text"><small class="text-body-secondary">Actor Principal: {{$pelicula->actor->nombre}}</small></p>
                     </div>
                   </div>

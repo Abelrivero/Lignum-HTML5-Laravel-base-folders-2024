@@ -18,23 +18,23 @@
                 <br>
             @endif
             <label for="titulo" class="label">
-                <input type="text" placeholder=" " class="input" id="titulo" wire:model="titulo">
+                <input type="text" placeholder=" " class="input @error('titulo') border border-danger @enderror" id="titulo" wire:model="titulo">
                 <span class="spanName">Titulo:</span>
             </label>
             @error('titulo')<span class="error text-danger">{{ $message }}</span>@enderror
             <label for="anio" class="label">
-                <input type="date" placeholder=" " class="input" id="anio" wire:model="anio">
+                <input type="date" placeholder=" " class="input @error('anio') border border-danger @enderror" id="anio" wire:model="anio">
                 <span class="spanName">Año:</span>
             </label>
             @error('anio')<span class="error text-danger">{{ $message }}</span>@enderror
             <label for="duracion" class="label">
-                <input type="number" placeholder=" " class="input" id="duracion" wire:model="duracion">
+                <input type="number" placeholder=" " class="input @error('duracion') border border-danger @enderror" id="duracion" wire:model="duracion">
                 <span class="spanName">Duracion:</span>
             </label>
             @error('duracion')<span class="error text-danger">{{ $message }}</span>@enderror
             <span class="spanNameTextArea">Sinopsis:</span>
             <label for="sinopsis" class="label">
-                <textarea name="" id="floatingTextarea2" cols="30" rows="10" placeholder=" " wire:model="sinopsis" class="input"></textarea>
+                <textarea name="" id="floatingTextarea2" cols="30" rows="10" placeholder=" " wire:model="sinopsis" class="input @error('sinopsis') border border-danger @enderror"></textarea>
             </label>
             @error('sinopsis')<span class="error text-danger">{{ $message }}</span>@enderror
             <br>
