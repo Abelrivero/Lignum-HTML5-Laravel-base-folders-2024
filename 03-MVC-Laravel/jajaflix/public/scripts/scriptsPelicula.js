@@ -78,7 +78,7 @@ document.addEventListener('livewire:init', () => {
     });
     Livewire.on('successPeliculaEdit', (event) => {
         alert('Pelicula Editada Correctamente');
-       /*  $('#listPelicula').load(' #listPelicula') */
+        /* $('#listPelicula').load(' #listPelicula'); */
     });
     Livewire.on('errorPeliculaFind', (event) =>{
         alert('Ocurrio un Error, Intente Nuevamente Mas Tarde');

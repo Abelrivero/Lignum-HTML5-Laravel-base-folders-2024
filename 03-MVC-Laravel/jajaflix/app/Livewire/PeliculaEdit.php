@@ -48,8 +48,7 @@ class PeliculaEdit extends Component
             $this->urlImagen = $pelicula->imagen;
             $this->actorPrincipalNombre = $pelicula->actor->nombre;
             $this->actorPrincipalID = $pelicula->actorPrincipalID;
-        }else
-        {
+        }else{
             $this->dispatch('errorPeliculaFind');
         }
     }
@@ -94,6 +93,7 @@ class PeliculaEdit extends Component
 
     public function render()
     {
+
         return view('livewire.pelicula-edit');
     }
 }

@@ -16,6 +16,8 @@ class ActorController extends Controller
 
     public function showActor(Actor $actorId)
     {
+        //TODO: agregar documentacion ya que $actorID es una id y se devuelve un objeto con el actor 
+
         return response($actorId);
     }
 
@@ -26,10 +28,12 @@ class ActorController extends Controller
 
     public function storeActor(ActorRequest $request)
     {
+        /* $request->rules(); */
         $actor = new Actor;
         $actor->nombre = $request->nombre;
         $actor->fechaNacimiento = $request->fechaNacimiento;
         $actor->save();
+        session()->flash('exito', 'Actor Creado Exitosamente');
 
         return redirect()->route('actorIndex');
     }
@@ -53,6 +57,7 @@ class ActorController extends Controller
     public function deleteActor(Actor $actorId)
     {
         $actorId->delete();
-        return redirect()-route('actorIndex');
+        /* return response('Actor Eliminado Correctamente', 200); */
+        return redirect()->route('actorIndex');
     }
 }

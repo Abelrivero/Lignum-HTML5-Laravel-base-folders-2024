@@ -20,10 +20,13 @@
     @livewireStyles
 </head>
 <body class="p-3 mb-2 bg-dark bg-gradient text-white">
-    @yield('content')
+    <main class="h-100">
+        @yield('content')
+    </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{asset('/scripts/swal.js')}}"></script>
     @yield('scripts')
-
     @livewireScripts
 </body>
 </html>
