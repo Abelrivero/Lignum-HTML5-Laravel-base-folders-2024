@@ -75,10 +75,10 @@ $('.formEliminarActor').submit(function (e) {
         btnCancel = 'No, Cancelar',
         text = 'El Actor se Eliminara de Forma Permanente',
         () => {
-            alertSwalSuccess('Actor Eliminado Correctamente');
+            this.submit();
+           /*  alertSwalSuccess('Actor Eliminado Correctamente');
             setTimeout(()=>{
-                this.submit();
-            }, 1500)
+            }, 1500) */
             /* $("#listActor").load(" #listActor"); */
          
         } 

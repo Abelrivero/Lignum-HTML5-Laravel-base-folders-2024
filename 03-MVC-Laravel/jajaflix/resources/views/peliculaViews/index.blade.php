@@ -18,7 +18,7 @@
             <div class="card mb-3" style="max-width: 540px;">
                 <div class="row g-0">
                   <div class="col-md-4">
-                    <img src="{{asset($pelicula->imagen)}}" class="img-thumbnail rounded float-start mt-4" alt="...">
+                    <img src="{{asset($pelicula->imagen ?? '/resources/imagenes/imgDefaultPeliculas.jpg')}}" class="img-thumbnail rounded float-start mt-4" alt="...">
                   </div>
                   <div class="col-md-8 text-dark">
                     <div class="card-body">
@@ -35,7 +35,7 @@
                         </button>
                     </div>
                     <div class="col-4">
-                        <form action="{{route('peliculaDelete', $pelicula->id)}}" method="POST">
+                        <form action="{{route('peliculaDelete', $pelicula->id)}}" method="POST" class="formEliminarPelicula">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Eliminar</button>
@@ -60,4 +60,19 @@
 
 @section('scripts')
     <script src="{{asset('/scripts/scriptsPelicula.js')}}"></script>
+    @if (session('peliculaCreada'))
+        <script>
+            alertSwalSuccess('{{session("peliculaCreada")}}')
+        </script>
+    @endif
+    @if (session('peliculaEditada'))
+    <script>
+        alertSwalSuccess('{{session("peliculaEditada")}}')
+    </script>
+    @endif
+    @if (session('peliculaEliminada'))
+        <script>
+            alertSwalSuccess('{{session("peliculaEliminada")}}')
+        </script>
+    @endif
 @endsection

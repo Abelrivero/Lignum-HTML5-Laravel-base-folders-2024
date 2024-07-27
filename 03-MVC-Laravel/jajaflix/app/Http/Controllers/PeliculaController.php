@@ -6,6 +6,7 @@ use App\Http\Requests\PeliculaRequest;
 use App\Models\Actor;
 use App\Models\Pelicula;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class PeliculaController extends Controller
@@ -29,6 +30,7 @@ class PeliculaController extends Controller
 
     public function storePelicula(PeliculaRequest $request)
     {
+        Log::info('New Movie');
         $pelicula = new Pelicula;
         $pelicula->titulo = $request->titulo;
         $pelicula->anio = $request->anio;
@@ -45,6 +47,8 @@ class PeliculaController extends Controller
             $pelicula->imagen = $imagen;
         }
         $pelicula->save();
+        Log::info('Pelicula Creada', ['pelicula' => $pelicula]);
+        session()->flash('peliculaCreada', 'Pelicula Creada Exitosamente');
         
         return redirect()->route('peliculaIndex');
     }
@@ -80,12 +84,14 @@ class PeliculaController extends Controller
         ]);
 
         /* TODO: editar imagen */
+        session()->flash('peliculaEditada', 'Pelicula Editada Exitosamente');
         return redirect()->route('peliculaIndex');
     }
 
     public function deletePelicula(Pelicula $peliculaId)
     {
         $peliculaId->delete();
+        session()->flash('peliculaEliminada', 'Pelicula Eliminada Exitosamente');
         return redirect()->route('peliculaIndex');
     }
 }

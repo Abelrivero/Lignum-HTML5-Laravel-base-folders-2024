@@ -80,10 +80,11 @@ class PeliculaEdit extends Component
             'imagen' => $imagen,
             'actorPrincipalID' => $this->actorPrincipalID,
         ]);
-        $this->dispatch('successPeliculaEdit');
-        $this->redirectRoute('peliculaIndex');
+        /* $this->dispatch('successPeliculaEdit'); */
         $this->closeModal(); 
         $this->reset('titulo', 'anio', 'duracion', 'sinopsis', 'imagen', 'actorPrincipalID');
+        $this->redirectRoute('peliculaIndex');
+        session()->flash('peliculaCreada', 'Pelicula Editada Exitosamente');
     }
     
     public function closeModal(){

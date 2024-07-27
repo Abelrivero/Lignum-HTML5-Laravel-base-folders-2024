@@ -76,15 +76,37 @@ document.addEventListener('livewire:init', () => {
     Livewire.on('closeModal', (event) => {
         $('#componenteModal').modal('hide');
     });
-    Livewire.on('successPeliculaEdit', (event) => {
+    /* Livewire.on('successPeliculaEdit', (event) => {
         alert('Pelicula Editada Correctamente');
-        /* $('#listPelicula').load(' #listPelicula'); */
-    });
+        $('#listPelicula').load(' #listPelicula');
+    }); */
     Livewire.on('errorPeliculaFind', (event) =>{
         alert('Ocurrio un Error, Intente Nuevamente Mas Tarde');
     });
 });
 
 $('#btnEditarPelicula').on('click', function() {
-    $('#btnSubmitForm').click();
+    alertSwalConfirm(
+        titulo = "Desea Guardar los Cambios Realizados",
+        btnConfirm = "Si, Guardar",
+        btnCancel = "Cancelar",
+        text = "",
+        () => {
+            $('#btnSubmitForm').click();
+        }
+    )
+    /* $('#btnSubmitForm').click(); */
 })
+
+$('.formEliminarPelicula').submit(function (e) { 
+    e.preventDefault();
+    alertSwalConfirm(
+        titulo = 'Desea Eliminar Esta Pelicula',
+        btnConfirm = 'Si, Eliminar',
+        btnCancel = 'No, Cancelar',
+        text = 'La Pelicula se Eliminara de Forma Permanente',
+        () => {
+            this.submit();
+        } 
+    )
+});

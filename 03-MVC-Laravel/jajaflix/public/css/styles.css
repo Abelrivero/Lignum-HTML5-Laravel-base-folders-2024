@@ -54,3 +54,6 @@ body{
     justify-content: center;
     flex-direction: column;
 }
+button{
+    margin-left: 5px;
+}
