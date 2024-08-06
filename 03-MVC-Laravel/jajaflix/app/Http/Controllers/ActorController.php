@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ActorRequest;
 use App\Models\Actor;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class ActorController extends Controller
 {
@@ -14,11 +17,11 @@ class ActorController extends Controller
         return view('actorViews.index', ['actores' => $actores]);
     }
 
-    public function showActor(Actor $actorId)
+    public function showActor($actorId)
     {
         //TODO: agregar documentacion ya que $actorID es una id y se devuelve un objeto con el actor 
-
-        return response($actorId);
+        $actor = Actor::find($actorId);
+        return response($actor);
     }
 
     public function createActor()
@@ -29,11 +32,20 @@ class ActorController extends Controller
     public function storeActor(ActorRequest $request)
     {
         /* $request->rules(); */
-        $actor = new Actor;
-        $actor->nombre = $request->nombre;
-        $actor->fechaNacimiento = $request->fechaNacimiento;
-        $actor->save();
-        session()->flash('exito', 'Actor Creado Exitosamente');
+        try {
+            DB::beginTransaction();
+            $actor = new Actor;
+            $actor->nombre = $request->nombre;
+            $actor->fechaNacimiento = $request->fechaNacimiento;
+            $actor->save();
+            session()->flash('storeActor', 'Actor Creado Exitosamente');
+            DB::commit();
+        } catch (Exception $ex) {
+            Log::info('ActorController function storeActor');
+            Log::info($ex);
+            session()->flash('errorStoreActor', 'Ha Ocurrido un Error');
+            DB::rollBack();
+        }
 
         return redirect()->route('actorIndex');
     }
@@ -43,21 +55,44 @@ class ActorController extends Controller
         return view('actorViews.edit', ['actor' => $actorId]);
     }
 
-    public function updateActor(ActorRequest $request, Actor $actorId)
+    public function updateActor(ActorRequest $request, $actorId)
     {
-    
-        $actorId->update([
-            'nombre' => $request->nombre,
-            'fechaNacimiento' => $request->fechaNacimiento
-        ]);
+        try {
+            DB::beginTransaction();
+            $actor = Actor::find($actorId);
+            $actor->update([
+                'nombre' => $request->nombre,
+                'fechaNacimiento' => $request->fechaNacimiento
+            ]);
+            session()->flash('updateActor', 'Actor Editado Correctamente');
+            DB::commit();
+
+        } catch (Exception $ex) {
+            //throw $th;
+            Log::info('ActorController function UpdateActor');
+            Log::info($ex);
+            session()->flash('errorUpdateActor', 'Ha Ocurrido un Error');
+            DB::rollBack();
+        }
         /* return redirect()->route('actorIndex'); */ //redireccion cuando se hace con laravel
         return response('Actor Editado Correctamente', 200);
     }
 
-    public function deleteActor(Actor $actorId)
+    public function deleteActor($actorId)
     {
-        $actorId->delete();
+        $actor = Actor::find($actorId);
+        $actor->delete();
+        session()->flash('actorDelete', 'Actor Eliminado Correctamente');
+        /* try {
+            DB::beginTransaction();
+            DB::commit();
+        } catch (Exception $ex) {
+            Log::info('ActorController function deleteActor');
+            Log::info($ex);
+            session()->flash('errorActorDelete', 'Ha Ocurrido un Error');
+            DB::rollBack();
+        } */
         /* return response('Actor Eliminado Correctamente', 200); */
-        return redirect()->route('actorIndex');
+        /* return redirect()->route('actorIndex'); */
     }
 }

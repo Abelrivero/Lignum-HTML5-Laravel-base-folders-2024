@@ -18,7 +18,7 @@ return new class extends Migration
             $table->bigInteger("duracion");
             $table->text("sinopsis", 250);
             $table->string("imagen")->nullable();
-            $table->foreignId("actorPrincipalID")->references("id")->on("actors")->nullable();
+            $table->foreignId("actorPrincipalID")->references("id")->on("actors")->onDelete('cascade')->nullable();
             $table->timestamps();
         });
     }

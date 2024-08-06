@@ -4,6 +4,9 @@ namespace App\Livewire;
 
 use App\Models\Actor;
 use App\Models\Pelicula;
+use Exception;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -36,55 +39,69 @@ class PeliculaEdit extends Component
     #[On('showPelicula')]
     public function show($idPelicula)
     {
-        $pelicula = Pelicula::find($idPelicula);
-        if($pelicula){
-           /*  $this->openModal(); */
-            $this->dispatch('openModal');
-            $this->peliculaId = $pelicula->id;
-            $this->titulo = $pelicula->titulo;
-            $this->anio = $pelicula->anio;
-            $this->duracion = $pelicula->duracion;
-            $this->sinopsis = $pelicula->sinopsis;
-            $this->urlImagen = $pelicula->imagen;
-            $this->actorPrincipalNombre = $pelicula->actor->nombre;
-            $this->actorPrincipalID = $pelicula->actorPrincipalID;
-        }else{
-            $this->dispatch('errorPeliculaFind');
+        try {
+            $pelicula = Pelicula::find($idPelicula);
+            if($pelicula){
+               /*  $this->openModal(); */
+                $this->dispatch('openModal');
+                $this->peliculaId = $pelicula->id;
+                $this->titulo = $pelicula->titulo;
+                $this->anio = $pelicula->anio;
+                $this->duracion = $pelicula->duracion;
+                $this->sinopsis = $pelicula->sinopsis;
+                $this->urlImagen = $pelicula->imagen;
+                $this->actorPrincipalNombre = $pelicula->actor->nombre;
+                $this->actorPrincipalID = $pelicula->actorPrincipalID;
+            }else{
+                $this->dispatch('errorPeliculaFind');
+            }  
+        } catch (Exception $ex) {
+            Log::info('PeliculaEdit function show');
+            Log::info($ex);
         }
+
     }
 
     public function update()
     {
-        $pelicula = Pelicula::find($this->peliculaId);
-        
-        if($this->imagen){
-            $imagen = $this->imagen->store('public/imagenes');
-            $imagen = str_replace('public', '/storage', $imagen);
-            $rutaEliminar = str_replace('/storage', 'public', $pelicula->imagen);
-            Storage::delete($rutaEliminar);
-        }else{
-            $imagen = $pelicula->imagen;
-            /* $this->imagen str_replace('public', '/storage', $this->imagen); */
+        try {
+            $pelicula = Pelicula::find($this->peliculaId);
+            DB::beginTransaction();
+            if($this->imagen){
+                $imagen = $this->imagen->store('public/imagenes');
+                $imagen = str_replace('public', '/storage', $imagen);
+                $rutaEliminar = str_replace('/storage', 'public', $pelicula->imagen);
+                Storage::delete($rutaEliminar);
+            }else{
+                $imagen = $pelicula->imagen;
+                /* $this->imagen str_replace('public', '/storage', $this->imagen); */
+            }
+            $validated = $this->validate([
+                'titulo' => 'required|min:2|max:250',
+                'anio' => 'required',
+                'duracion' => 'required',
+                'sinopsis' => 'required|min:5|max:500'
+            ]);
+            $pelicula->update([
+                'titulo' => $this->titulo,
+                'anio' => $this->anio,
+                'duracion' => $this->duracion,
+                'sinopsis' => $this->sinopsis,
+                'imagen' => $imagen,
+                'actorPrincipalID' => $this->actorPrincipalID,
+            ]);
+            /* $this->dispatch('successPeliculaEdit'); */
+            $this->closeModal();
+            DB::commit(); 
+            $this->reset('titulo', 'anio', 'duracion', 'sinopsis', 'imagen', 'actorPrincipalID');
+            $this->redirectRoute('peliculaIndex');
+            session()->flash('peliculaCreada', 'Pelicula Editada Exitosamente');
+        } catch (Exception $ex) {
+            Log::info('PeliculaEdit function update');
+            Log::info($ex);
+            DB::rollBack();
         }
-        $validated = $this->validate([
-            'titulo' => 'required|min:2|max:250',
-            'anio' => 'required',
-            'duracion' => 'required',
-            'sinopsis' => 'required|min:5|max:500'
-        ]);
-        $pelicula->update([
-            'titulo' => $this->titulo,
-            'anio' => $this->anio,
-            'duracion' => $this->duracion,
-            'sinopsis' => $this->sinopsis,
-            'imagen' => $imagen,
-            'actorPrincipalID' => $this->actorPrincipalID,
-        ]);
-        /* $this->dispatch('successPeliculaEdit'); */
-        $this->closeModal(); 
-        $this->reset('titulo', 'anio', 'duracion', 'sinopsis', 'imagen', 'actorPrincipalID');
-        $this->redirectRoute('peliculaIndex');
-        session()->flash('peliculaCreada', 'Pelicula Editada Exitosamente');
+        
     }
     
     public function closeModal(){
@@ -94,7 +111,6 @@ class PeliculaEdit extends Component
 
     public function render()
     {
-
         return view('livewire.pelicula-edit');
     }
 }

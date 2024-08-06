@@ -80,10 +80,15 @@
 @endsection
 
 @section('scripts')
-    @if (session('exito'))
-    <script>
-        alertSwalSuccess('{{session("exito")}}')
-    </script>
-    @endif
     <script src="{{asset('/scripts/scriptsActor.js')}}"></script>
+    @if (session('storeActor'))
+        <script>
+            alertSwalSuccess('{{session("storeActor")}}')
+        </script>
+    @endif
+    @if (session('actorDelete'))
+        <script>
+            alertSwalSuccess('{{session("actorDelete")}}')
+        </script>
+    @endif
 @endsection
