@@ -5,8 +5,14 @@
 @section('content')
 <div class="container">
     <h1 class="text-center fw-bold">Actores</h1>
-    <div class="d-flex justify-content-md-end">
-        <a href="{{route('actorCreate')}}" role="button" class="btn btn-outline-success">Crear</a>
+    {{$actores->links()}}
+    <div class="d-flex justify-content-between m-3">
+        <div class="col-sm-6 col-md-8">
+            <input type="text" placeholder="Buscar Actor" class="form-control" id="buscador">
+        </div>
+        <div class="float-end">
+            <a href="{{route('actorCreate')}}" role="button" class="btn btn-outline-success">Crear</a>
+        </div>
     </div>
     <div id="listActor">
         <table class="table text-white">

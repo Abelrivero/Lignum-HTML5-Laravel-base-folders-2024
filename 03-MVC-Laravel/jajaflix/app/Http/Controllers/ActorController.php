@@ -13,13 +13,21 @@ class ActorController extends Controller
 {
     public function indexActor()
     {
-        $actores = Actor::all();
+        $actores = Actor::paginate(10);
         return view('actorViews.index', ['actores' => $actores]);
+    }
+
+    public function buscarActor(Request $request)
+    {
+        if($request->all()){
+            $nombreActor = $request->input('data');
+            $actor = Actor::where('nombre', 'like', '%'.$nombreActor.'%')->get();
+            return response($actor);
+        }
     }
 
     public function showActor($actorId)
     {
-        //TODO: agregar documentacion ya que $actorID es una id y se devuelve un objeto con el actor 
         $actor = Actor::find($actorId);
         return response($actor);
     }
@@ -68,7 +76,6 @@ class ActorController extends Controller
             DB::commit();
 
         } catch (Exception $ex) {
-            //throw $th;
             Log::info('ActorController function UpdateActor');
             Log::info($ex);
             session()->flash('errorUpdateActor', 'Ha Ocurrido un Error');

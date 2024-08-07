@@ -46,6 +46,7 @@ Route::prefix('/config')->group(function(){
         Route::controller(ActorController::class)->group(function(){
             Route::get('/list', 'indexActor')->name('actorIndex');
             Route::get('/showActor/{actorId}', 'showActor');
+            Route::get('/buscarActor', 'buscarActor');
 
             Route::get('/create', 'createActor')->name('actorCreate');
             Route::post('/alta', 'storeActor')->name('actorStore');

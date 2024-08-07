@@ -1,3 +1,23 @@
+$('#buscador').on("keyup", function(){
+    let buscado = $(this).val();
+    console.log(buscado);
+    
+    if(buscado.length > 3){
+        $.ajax({
+            type: "GET",
+            url: "/config/actor/buscarActor",
+            data: { data: buscado },
+            success: function (response) {
+                console.log(response);
+                
+            },error: function(res){
+                console.log(res);
+            }
+        });        
+    }
+        //TODO:terminar buscador con ajax
+})
+
 let idActor;
 
 function showActor(actorID){
@@ -85,4 +105,8 @@ function cerrarModal(){
     $('#componenteModal').modal('hide');
     ulErrors.empty();
     $('input').removeClass('border border-danger');
+}
+
+function debbounce(funct, await){
+    
 }
