@@ -11,10 +11,26 @@ use Illuminate\Support\Facades\Log;
 
 class ActorController extends Controller
 {
-    public function indexActor()
+    public function indexActor(Request $request)
     {
-        $actores = Actor::paginate(10);
-        return view('actorViews.index', ['actores' => $actores]);
+       /*  if($request->input('data') == true){
+            $actores = DB::table('actors')->orderBy('id', 'desc')->paginate(10);
+            response($actores);
+        }else{
+            $actores = DB::table('actors')->orderBy('id', 'asc')->paginate(10);;
+        } */
+        return view('actorViews.index');
+    }
+
+    public function listadoActor(Request $request)
+    {
+        /* dd('en la ruta'); */
+        if($request->input('data') == true){
+            $listadoActores = DB::table('actors')->orderBy('id', 'desc')->paginate(10);
+            return response($listadoActores);
+        }
+        $listadoActor = DB::table('actors')->orderBy('id', 'asc')->paginate(10);
+        return response($listadoActor);
     }
 
     public function buscarActor(Request $request)

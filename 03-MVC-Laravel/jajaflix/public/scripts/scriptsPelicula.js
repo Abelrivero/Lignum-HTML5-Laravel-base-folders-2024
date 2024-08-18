@@ -83,6 +83,14 @@ document.addEventListener('livewire:init', () => {
     Livewire.on('errorPeliculaFind', (event) =>{
         alert('Ocurrio un Error, Intente Nuevamente Mas Tarde');
     });
+    Livewire.on('select2',()=>{
+        initSelect2();
+    });
+    $('#actorPrincipal').on('change', function(){
+        Livewire.dispatch('modificarActorPrincipal', {nuevoIdActor: this.value});
+        /* $wire.set('actorPrincipalID', this.value) */
+    });
+   
 });
 
 $('#btnEditarPelicula').on('click', function() {
@@ -110,3 +118,17 @@ $('.formEliminarPelicula').submit(function (e) {
         } 
     )
 });
+
+function initSelect2() {  
+    $(function() {
+        $('#actorPrincipal').select2({
+            dropdownCssClass: 'text-dark',
+            dropdownParent: $('#componenteModal .modal-content'),
+            allowClear: false,
+            tags: false,
+        });
+    });
+}
+
+
+

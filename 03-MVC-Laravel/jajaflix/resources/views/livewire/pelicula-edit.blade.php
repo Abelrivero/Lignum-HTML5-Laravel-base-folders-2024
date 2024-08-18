@@ -42,12 +42,12 @@
                     <input type="file" wire:model="imagen">
                     <br>
                     <label for="actorPrincipal">Actor Principal:</label>
-                    <select name="" id="actorPrincipal" wire:model="actorPrincipalID">
-                        <option value="" selected disabled>Actor Principal</option>
-                        @foreach ($actors as $actor)
-                        <option value="{{$actor->id}}">{{$actor->nombre}}</option>
-                        @endforeach
-                    </select>
+                        <select name="" id="actorPrincipal" wire:model="actorPrincipalID" class="text-dark">
+                            <option value="" selected disabled>Actor Principal</option>
+                            @foreach ($actors as $actor)
+                            <option value="{{$actor->id}}" class="text-dark">{{$actor->nombre}}</option>
+                            @endforeach
+                        </select>
                     <button hidden type="submit" id="btnSubmitForm"></button>
                 </div>
             </div>

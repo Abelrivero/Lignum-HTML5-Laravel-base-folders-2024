@@ -45,6 +45,7 @@ Route::prefix('/config')->group(function(){
     Route::prefix('/actor')->group(function(){
         Route::controller(ActorController::class)->group(function(){
             Route::get('/list', 'indexActor')->name('actorIndex');
+            Route::get('/listadoActor', 'listadoActor')->name('actorListado');
             Route::get('/showActor/{actorId}', 'showActor');
             Route::get('/buscarActor', 'buscarActor');
 

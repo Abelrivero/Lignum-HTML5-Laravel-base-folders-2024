@@ -5,27 +5,42 @@
 @section('content')
 <div class="container">
     <h1 class="text-center fw-bold">Actores</h1>
-    {{$actores->links()}}
+    <div class="d-flex justify-content-center">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination" id="ulLinks">
+              {{-- <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">Next</a></li> --}}
+            </ul>
+          </nav>
+        {{-- {{$actores->links()}} --}}
+    </div>
     <div class="d-flex justify-content-between m-3">
         <div class="col-sm-6 col-md-8">
             <input type="text" placeholder="Buscar Actor" class="form-control" id="buscador">
+            <p id="textBuscador" class="text-danger"></p>
         </div>
         <div class="float-end">
             <a href="{{route('actorCreate')}}" role="button" class="btn btn-outline-success">Crear</a>
         </div>
     </div>
-    <div id="listActor">
+    <div id="listActor"> 
         <table class="table text-white">
             <thead>
               <tr>
-                <th scope="col">ID</th>
+                <th scope="col"><i class="bi bi-arrow-down-up" onclick="ordenarTabla()" style="cursor:pointer"></i> ID</th>
                 <th scope="col">Nombre</th>
-                <th scope="col">Fecha de Nacimiento</th>
+                <th scope="col"><a onclick="ordenarTabla()" style="cursor: pointer">x</a> Fecha de Nacimiento</th>
                 <th scope="col" class="text-center">Acciones</th>
               </tr>
             </thead>
-            <tbody>
-                @forelse ($actores as $actor)
+            <tbody id="tbodyVacio">
+
+            </tbody>
+            <tbody id="tbodyTablaActor">
+                {{-- @forelse ($actores as $actor)
                 <tr>
                     <th scope="row">{{$actor->id}}</th>
                     <td>{{$actor->nombre}}</td>
@@ -47,9 +62,12 @@
                     <tr>
                         <td>Sin Actores Gruadados</td>
                     </tr>
-                @endforelse
+                @endforelse --}}
             </tbody>
           </table>
+        <div class="d-flex justify-content-center py-3">
+            {{-- {{$actores->links()}} --}}
+        </div>
     </div>
         @component('componentes.modal')
         @slot('modalTitle', 'Editar Actor')

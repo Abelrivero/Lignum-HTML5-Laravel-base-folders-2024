@@ -103,11 +103,22 @@ class PeliculaEdit extends Component
         }
         
     }
+
+    #[On('modificarActorPrincipal')]
+    public function modificarActorPrincipal($nuevoIdActor)
+    {
+        $this->actorPrincipalID = $nuevoIdActor;
+    }
     
     public function closeModal(){
         $this->dispatch('closeModal');
         $this->resetValidation();
     } 
+
+    public function hydrate()
+    {
+        $this->dispatch('select2');
+    }
 
     public function render()
     {
